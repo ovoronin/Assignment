@@ -1,0 +1,15 @@
+/* app css stylesheet */
+
+.cart.table td:nth-child(1),
+.cart.table td:nth-child(2),
+.cart.table td:nth-child(3),
+.items.table td:nth-child(1),
+.items.table td:nth-child(2),
+.items.table td:nth-child(3)
+{
+	text-align: center;
+}
+
+.cart.table .h4, .cart.table h4, .items.table .h4, .items.table h4 {
+	color: green;
+}

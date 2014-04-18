@@ -1,55 +1,46 @@
-<!DOCTYPE html>
-<html ng-app="app">
+<!doctype html>
+<html lang="en" ng-app="myApp">
 <head>
-	<meta charset="UTF-8">
-	<title>Wine Cellar</title>
-	<link rel="stylesheet" href="css/styles.css" />
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/angular.js"></script>
-	<script type="text/javascript" src="js/angular-route.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
+  <meta charset="utf-8">
+  <title>Pseudo store</title>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <link rel="stylesheet" href="css/ng-table.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body ng-controller="itemsController" ng-cloak>
-	<div class="left">
-		<br>Search: <input ng-model="query">
-		<br>Sort by:
-		<select ng-model="orderProp">
-		  <option value="name">Ascending</option>
-		  <option value="-name">Descending</option>
-		</select>
-		<div id="wineslist">
-			<ul>
-				<li ng-class="{active: wine.id == opened.id}" 
-					ng-repeat="wine in wines | filter:query | orderBy:orderProp">
-					<a href="#/wines/{{wine.id}}">{{wine.name}}</a>
-				</li>
+<body>
+	<div class="container">
+		
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#/items">Pseudo store</a>
+		    </div>
+		
+	        <ul class="nav navbar-nav navbar-right nav-buttons">
+		    	<li ng-class="{active: active=='items'}"><a href="#/items"><span class="glyphicon glyphicon-list"></span> Items</a></li>
+		    	<li ng-class="{active: active=='cart'}">
+		    		<a href="#/cart">
+		    			<span class="glyphicon glyphicon-shopping-cart"></span>
+		    			Cart
+		    			<span class="ng-cloak" ng-show="count"> ({{count}} item(s), {{price}} total)</span>
+		    			<span class="ng-cloak" ng-hide="count"> is empty</span>
+		    		</a>
+		    	</li>
 			</ul>
-		</div>
+		  </div>
+		</nav>
+	
+	  	<div ng-view></div>
+
 	</div>
-	<div id="winedetails">
-		<ng-switch on="anyWineOpened()">
-			<div class="form-right-col" ng-switch-when="true" ng-controller="wineDetailsController">
-		        <label>Id:</label>
-		        <input type="text" ng-model="opened.id" disabled /><br>
-	   	        <label>Name:</label>
-		        <input type="text" ng-model="opened.name" required/><br>
-		        <label>Grapes:</label>
-		        <input type="text" ng-model="opened.grapes" /><br>
-		        <label>Country:</label>
-		        <input type="text" ng-model="opened.country" /><br>
-		        <label>Region:</label>
-		        <input type="text" ng-model="opened.region" /><br>
-		        <label>Year:</label>
-		        <input type="text" ng-model="opened.year" /><br>
-		        <label>Picture:</label>
-		        <input type="text" ng-model="opened.picture" /><br>
-		        <img height="300" ng-src="{{imageSrc(opened)}}"/><br>
-		        <label>Notes:</label>
-		        <textarea ng-model="opened.description"></textarea><br><br>
-		 		<button class="save" ng-click="save(opened)">Save</button>
-		    	<button class="delete" ng-click="delete(opened)">Delete</button>
- 			</div>
- 		</ng-switch>	
-	</div>
+	
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/ng-table.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/controllers/itemsController.js"></script>
+	<script src="js/controllers/cartController.js"></script>
 </body>
 </html>

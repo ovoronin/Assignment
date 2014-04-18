@@ -1,0 +1,25 @@
+<div ng-cloak>
+    
+    <table ng-table="tableParams" show-filter="true" class="items table table-striped ng-cloak" ng-cloak>
+        <tr ng-repeat="item in $data">
+            <td data-title="'Category'" filter="{ 'category': 'text' }" sortable="'category'">{{item.category}}</td>
+            <td data-title="'Brand'" filter="{ 'brand': 'text' }" sortable="'brand'">{{item.brand}}</td>
+            <td data-title="'Image'"><img ng-src="{{item.image}}"></img></td>
+            <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'">{{item.name}}</td>
+            <td data-title="'Description'" filter="{ 'description': 'text' }" sortable="'description'">{{item.description}}</td>
+            <td data-title="'Price'" sortable="'price'">
+            	<div class="text-center"><h4>{{item.price}}</h4></div>
+            	<div class="text-center">
+	            	<button class="btn btn-danger btn-xs" ng-click="dec(item)"><span class="glyphicon glyphicon-minus"></span></button>
+	            	<span class="h4">{{item.toOrder}}</span>
+	            	<button class="btn btn-success btn-xs" ng-click="inc(item)"><span class="glyphicon glyphicon-plus"></span></button>
+            	</div><br/>
+            	<button class="btn btn-primary" ng-click='addToCart(item)'><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+            </td>
+        </tr>
+    </table>
+        
+    <p><strong>Count:</strong> {{total}}
+
+</div>
+

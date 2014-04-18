@@ -1,0 +1,23 @@
+<div ng-cloak>
+    
+    <table ng-table="tableParams" show-filter="true" class="cart table table-striped">
+        <tr ng-repeat="item in $data">
+            <td data-title="'Category'" filter="{ 'category': 'text' }" sortable="'category'">{{item.category}}</td>
+            <td data-title="'Brand'" filter="{ 'brand': 'text' }" sortable="'brand'">{{item.brand}}</td>
+            <td data-title="'Image'"><img ng-src="{{item.image}}"></img></td>
+            <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'">{{item.name}}</td>
+            <td data-title="'Description'" filter="{ 'description': 'text' }" sortable="'description'">{{item.description}}</td>
+            <td data-title="'Price'" sortable="'price'"><span class="h4">{{item.price}}</span></td>
+            <td data-title="'Quantity'" sortable="'quantity'"><nobr>
+            	<button class="btn btn-danger btn-xs" ng-click="dec(item)"><span class="glyphicon glyphicon-minus"></span></button>
+            	<span class="h4">{{item.order}}</span>
+            	<button class="btn btn-success btn-xs" ng-click="inc(item)"><span class="glyphicon glyphicon-plus"></span></button>
+            	<button class="btn btn-danger btn-xs" ng-click="remove(item)"><span class="glyphicon glyphicon-remove"></span></button></nobr>
+            </td>
+        </tr>
+    </table>
+        
+    <p><strong>Count:</strong> {{count}}
+    <p><strong>Total:</strong> {{totalPrice}}
+
+</div>
