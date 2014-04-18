@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Wine Cellar</title>
+	<link rel="stylesheet" href="css/styles.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular-route.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body ng-controller="itemsController" ng-cloak>
+	<div class="left">
+		<br>Search: <input ng-model="query">
+		<br>Sort by:
+		<select ng-model="orderProp">
+		  <option value="name">Ascending</option>
+		  <option value="-name">Descending</option>
+		</select>
+		<div id="wineslist">
+			<ul>
+				<li ng-class="{active: wine.id == opened.id}" 
+					ng-repeat="wine in wines | filter:query | orderBy:orderProp">
+					<a href="#/wines/{{wine.id}}">{{wine.name}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="winedetails">
+		<ng-switch on="anyWineOpened()">
+			<div class="form-right-col" ng-switch-when="true" ng-controller="wineDetailsController">
+		        <label>Id:</label>
+		        <input type="text" ng-model="opened.id" disabled /><br>
+	   	        <label>Name:</label>
+		        <input type="text" ng-model="opened.name" required/><br>
+		        <label>Grapes:</label>
+		        <input type="text" ng-model="opened.grapes" /><br>
+		        <label>Country:</label>
+		        <input type="text" ng-model="opened.country" /><br>
+		        <label>Region:</label>
+		        <input type="text" ng-model="opened.region" /><br>
+		        <label>Year:</label>
+		        <input type="text" ng-model="opened.year" /><br>
+		        <label>Picture:</label>
+		        <input type="text" ng-model="opened.picture" /><br>
+		        <img height="300" ng-src="{{imageSrc(opened)}}"/><br>
+		        <label>Notes:</label>
+		        <textarea ng-model="opened.description"></textarea><br><br>
+		 		<button class="save" ng-click="save(opened)">Save</button>
+		    	<button class="delete" ng-click="delete(opened)">Delete</button>
+ 			</div>
+ 		</ng-switch>	
+	</div>
+</body>
+</html>
